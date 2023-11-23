@@ -90,8 +90,8 @@ In order to update a `Customer` you’ve to provide:
 //...
 let customerRequestBody = CustomerData(
                 description: "new description",
-                email: "adnan.omerovic.update@monri.com",
-                name: "Adnan Update",
+                email: "harun.kolos.update@monri.com",
+                name: "Harun Update",
                 phone: "00387000111"
         )
         

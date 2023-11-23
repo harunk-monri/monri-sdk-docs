@@ -100,7 +100,7 @@ In order to update a `Customer` you’ve to provide:
 //...
 final CustomerData updateCustomerData = new CustomerData()
                                 .setEmail("update@email.com")
-                                .setName("Adnan")
+                                .setName("Harun")
                                 .setPhone("00387000112");
                         
 final UpdateCustomerParams updateCustomerParams = new UpdateCustomerParams(
@@ -289,7 +289,7 @@ final CustomerParams customerParams = new CustomerParams()
                 .setZip("71000")
                 .setPhone("+38761000111")
                 .setCountry("BA")
-                .setEmail("monri-android-sdk-test@monri.com");
+                .setEmail("monri-flutter-sdk-test@monri.com");
 
 card.setTokenizePan(true);//save card for future payment
 
@@ -297,7 +297,7 @@ ConfirmPaymentParams confirmPaymentParams = ConfirmPaymentParams.create(
         "clientSecret",
         card.toPaymentMethodParams(),
         TransactionParams.create()
-                .set("order_info", "Android SDK payment session")
+                .set("order_info", "Flutter SDK payment session")
                 .set(customerParams)
 );
         
