@@ -1,3 +1,8 @@
+---
+cover: ../../.gitbook/assets/Blue Modern Marketing Manager LinkedIn Banner.png
+coverY: 0
+---
+
 # Payment API Integration
 
 Our iOS libraries let you easily accept mobile payments inside any iOS app.
@@ -38,7 +43,7 @@ To create payment on our backend you'll need:
 Additionally we require following fields:
 
 | field             | length | type    | description                                             |
-|-------------------|--------|---------|---------------------------------------------------------|
+| ----------------- | ------ | ------- | ------------------------------------------------------- |
 | amount            | 1-11   | Integer | amount is in minor units, ie. 10.24 USD is sent as 1024 |
 | order\_number     | 2-40   | String  | unique order identifier                                 |
 | currency          | 3      | String  | One of supported currencies (BAM, EUR, USD, CHF etc)    |
@@ -48,11 +53,10 @@ Additionally we require following fields:
 Optionally we offer setting payment scenario, which can be one of:
 
 | field    | length | type   | description                                           |
-|----------|--------|--------|-------------------------------------------------------|
+| -------- | ------ | ------ | ----------------------------------------------------- |
 | scenario | enum   | String | possible values are: `charge` or `add_payment_method` |
 
-Scenario `charge` charges customer amount. Depending on `transaction_type` amount is reserved (authorize) or captured (
-purchase).
+Scenario `charge` charges customer amount. Depending on `transaction_type` amount is reserved (authorize) or captured ( purchase).
 
 Scenario `add_payment_method` provides simple way to implement 'Save card for future payments' functionality.
 
@@ -74,16 +78,13 @@ Request endpoint is `<base_url>/v2/payment/new` where base\_url is:
 * `https://ipgtest.monri.com` for TEST environment
 * `https://ipg.monri.com` for PROD environment
 
-_TIP_: Parametrize merchant\_key, authenticity\_token and base\_url so it can be easily changed when you are ready for
-production environment.
+_TIP_: Parametrize merchant\_key, authenticity\_token and base\_url so it can be easily changed when you are ready for production environment.
 
 Payment/new response contains:
 
 * status: String: approved | declined
-* id: String - Unique payment identifier used to track payment flow on Monri's side. Useful for debugging if something
-  goes wrong. Save this value in your database.
-* client\_secret: String - Value you'll send to your application which then will use this secret to confirm payment
-  using Monri iOS SDK.
+* id: String - Unique payment identifier used to track payment flow on Monri's side. Useful for debugging if something goes wrong. Save this value in your database.
+* client\_secret: String - Value you'll send to your application which then will use this secret to confirm payment using Monri iOS SDK.
 
 Request example in PHP:
 
@@ -132,8 +133,7 @@ var_dump($response);
 
 ### [Confirm payment on merchant's application](https://github.com/MonriPayments/monri-ios/wiki/Payment-API-Integration#confirm-payment-on-merchants-application) <a href="#user-content-confirm-payment-on-merchants-application" id="user-content-confirm-payment-on-merchants-application"></a>
 
-After you've created payment on a backend and sent client\_secret back to your application you need to confirm payment
-using Monri's iOS SDK.
+After you've created payment on a backend and sent client\_secret back to your application you need to confirm payment using Monri's iOS SDK.
 
 Steps:
 
@@ -152,7 +152,7 @@ _NOTE_ Values set in `TransactionParams` and `CustomerParams` will override thos
 CustomerParams:
 
 | attribute  | length | type   | description                                                                        |
-|------------|--------|--------|------------------------------------------------------------------------------------|
+| ---------- | ------ | ------ | ---------------------------------------------------------------------------------- |
 | full\_name | 3-30   | String | buyer's full name                                                                  |
 | address    | 3-100  | String | buyer's address                                                                    |
 | city       | 3-30   | String | buyer's city                                                                       |
@@ -165,20 +165,17 @@ TransactionParams is used to override values set in `payment/new`.
 
 ***
 
-Integration example is available in SDK's example and
-on [this link](https://github.com/MonriPayments/monri-ios/blob/master/Example/Monri/ViewController.swift#L70)
+Integration example is available in SDK's example and on [this link](https://github.com/MonriPayments/monri-ios/blob/master/Example/Monri/ViewController.swift#L70)
 
 ### [Getting payment result on merchant's backend](https://github.com/MonriPayments/monri-ios/wiki/Payment-API-Integration#getting-payment-result-on-merchants-backend) <a href="#user-content-getting-payment-result-on-merchants-backend" id="user-content-getting-payment-result-on-merchants-backend"></a>
 
-Although you can easily collect payment result directly in application through callback it's better to implement
-callback listener (WebHook) on your backend.
+Although you can easily collect payment result directly in application through callback it's better to implement callback listener (WebHook) on your backend.
 
 Requirements:
 
 * it must be available over the Internet
 * it must be secured (HTTPS)
-* it must be set in merchant's setup on Monri's dashboard (if you are not able to set this value
-  contact [support@monri.com](mailto:support@monri.com))
+* it must be set in merchant's setup on Monri's dashboard (if you are not able to set this value contact [support@monri.com](mailto:support@monri.com))
 
 How it works:
 
@@ -225,7 +222,7 @@ Body:
 Headers:
 
 | header              | value                                                                                                                                         |
-|---------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | accept-encoding     | gzip;q=1.0,deflate;q=0.6,identity;q=0.3                                                                                                       |
 | authorization       | WP3-callback d5e4528ad8a0e0f4262e518c663d5ff83cd4a8f381db68f9d30f99961409ceebb719c16d423757fc36c532b902c987012f5825dc8d32dde3a9b7ed95876be77a |
 | content-type        | application/json                                                                                                                              |

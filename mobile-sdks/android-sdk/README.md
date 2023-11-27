@@ -1,23 +1,21 @@
-# Android SDK
+---
+cover: ../../.gitbook/assets/Blue Modern Marketing Manager LinkedIn Banner.png
+coverY: 0
+---
+
+# 🟣 Android SDK
 
 Our Android libraries let you easily accept mobile payments and manage customer information inside any Android app.
 
-Monri has created a Java library for Android, allowing you to easily submit payments from an Android app. With our
-mobile library, we address PCI compliance by eliminating the need to send card data directly to your server. Instead,
-our libraries send the card data directly to our servers, where we can convert them
-to tokens.
+Monri has created a Java library for Android, allowing you to easily submit payments from an Android app. With our mobile library, we address PCI compliance by eliminating the need to send card data directly to your server. Instead, our libraries send the card data directly to our servers, where we can convert them to tokens.
 
-Your app will receive the token back, and can then send the token to an endpoint on your server, where it can be used to
-process a payment.
+Your app will receive the token back, and can then send the token to an endpoint on your server, where it can be used to process a payment.
 
 We support Android 4.4 (API level 19) and above.
 
 ### Installation
 
-Installing the Monri Android library is simple using [Android Studio](https://developer.android.com/studio/intro)
-and [IntelliJ](https://www.jetbrains.com/help/idea/getting-started-with-android-development.html). You don’t need to
-clone a repo or download any files. Just add the following to your project’s `build.gradle` file, inside the
-dependencies section.
+Installing the Monri Android library is simple using [Android Studio](https://developer.android.com/studio/intro) and [IntelliJ](https://www.jetbrains.com/help/idea/getting-started-with-android-development.html). You don’t need to clone a repo or download any files. Just add the following to your project’s `build.gradle` file, inside the dependencies section.
 
 ```gradle
 implementation 'com.monri:monri-android:2.0.+'

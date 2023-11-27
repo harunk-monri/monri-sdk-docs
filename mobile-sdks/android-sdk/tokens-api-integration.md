@@ -1,23 +1,21 @@
+---
+cover: ../../.gitbook/assets/Blue Modern Marketing Manager LinkedIn Banner.png
+coverY: 0
+---
+
 # Tokens API Integration
 
 Our Android libraries let you easily accept mobile payments and manage customer information inside any Android app.
 
-Monri has created a Java library for Android, allowing you to easily submit payments from an Android app. With our
-mobile library, we address PCI compliance by eliminating the need to send card data directly to your server. Instead,
-our libraries send the card data directly to our servers, where we can convert them
-to tokens.
+Monri has created a Java library for Android, allowing you to easily submit payments from an Android app. With our mobile library, we address PCI compliance by eliminating the need to send card data directly to your server. Instead, our libraries send the card data directly to our servers, where we can convert them to tokens.
 
-Your app will receive the token back, and can then send the token to an endpoint on your server, where it can be used to
-process a payment.
+Your app will receive the token back, and can then send the token to an endpoint on your server, where it can be used to process a payment.
 
 We support Android 4.4 (API level 19) and above.
 
 ### Installation
 
-Installing the Monri Android library is simple using [Android Studio](https://developer.android.com/studio/intro)
-and [IntelliJ](https://www.jetbrains.com/help/idea/getting-started-with-android-development.html). You don’t need to
-clone a repo or download any files. Just add the following to your project’s `build.gradle` file, inside the
-dependencies section.
+Installing the Monri Android library is simple using [Android Studio](https://developer.android.com/studio/intro) and [IntelliJ](https://www.jetbrains.com/help/idea/getting-started-with-android-development.html). You don’t need to clone a repo or download any files. Just add the following to your project’s `build.gradle` file, inside the dependencies section.
 
 ```gradle
 implementation 'com.monri:monri-android:1.3.+'
@@ -25,8 +23,7 @@ implementation 'com.monri:monri-android:1.3.+'
 
 ### Collecting credit card information
 
-At some point in the flow of your app, you’ll want to obtain payment details from the user. There are a couple ways to
-do this:
+At some point in the flow of your app, you’ll want to obtain payment details from the user. There are a couple ways to do this:
 
 * Use our built-in card input widget to collect card information
 * Build your own credit card form
@@ -35,9 +32,7 @@ Instructions for each route follows, although you may want to write your app to 
 
 ### Using the card input widget
 
-To collect card data from your customers directly, you can use
-Monri’s [CardInputWidget](https://github.com/monri/monri-android/blob/master/monri/src/main/java/com/monri/android/view/CardInputWidget.java)
-in your application. You can include it in any view’s layout file.
+To collect card data from your customers directly, you can use Monri’s [CardInputWidget](https://github.com/monri/monri-android/blob/master/monri/src/main/java/com/monri/android/view/CardInputWidget.java) in your application. You can include it in any view’s layout file.
 
 ```java
 <com.monri.android.view.CardInputWidget
@@ -46,9 +41,7 @@ in your application. You can include it in any view’s layout file.
     android:layout_height="wrap_content" />
 ```
 
-This allows your customers to input all of the required data for their card: the number, the expiration date, and the
-CVV code. Note that the value of the `Card` object is `null` if the data in the widget is either incomplete or fails
-client-side validity checks.
+This allows your customers to input all of the required data for their card: the number, the expiration date, and the CVV code. Note that the value of the `Card` object is `null` if the data in the widget is either incomplete or fails client-side validity checks.
 
 ```java
 import com.monri.android.view.CardInputWidget;
@@ -60,8 +53,7 @@ if (cardToSave == null) {
 }
 ```
 
-If you have any other data that you would like to associate with the card, such as name, address, or ZIP code, you can
-put additional input controls on your layout and add them directly to the `Card` object.
+If you have any other data that you would like to associate with the card, such as name, address, or ZIP code, you can put additional input controls on your layout and add them directly to the `Card` object.
 
 ```java
 cardToSave = cardToSave.toBuilder().name("Customer Name").build();
@@ -70,9 +62,7 @@ cardToSave = cardToSave.toBuilder().addressZip("12345").build();
 
 ### Building your own form
 
-If you build your own payment form, you’ll need to collect at least your customers’ card numbers and expiration dates.
-Monri strongly recommends collecting the CVC. You can optionally collect the user’s name and billing address for
-additional fraud protection.
+If you build your own payment form, you’ll need to collect at least your customers’ card numbers and expiration dates. Monri strongly recommends collecting the CVC. You can optionally collect the user’s name and billing address for additional fraud protection.
 
 Once you’ve collected a customer’s information, you will need to exchange the information for a Monri token.
 
@@ -99,9 +89,7 @@ public void onAddCard(String cardNumber, String cardExpMonth,
 }
 ```
 
-As you can see in the example above, the `Card` instance contains some helpers to validate that the card number passes
-the Luhn check, that the expiration date is the future, and that the CVC looks valid. You’ll probably want to validate
-these three things at once, so we’ve included a `validateCard` function that does so.
+As you can see in the example above, the `Card` instance contains some helpers to validate that the card number passes the Luhn check, that the expiration date is the future, and that the CVC looks valid. You’ll probably want to validate these three things at once, so we’ve included a `validateCard` function that does so.
 
 ```java
 // The Card class will normalize the card number
@@ -171,9 +159,6 @@ monri.createToken(
 
 ### Using tokens
 
-Using the payment token, however it was obtained, requires an API call from your server using your secret merchant
-key. (For security purposes, you should never embed your secret merchant key in your app.)
+Using the payment token, however it was obtained, requires an API call from your server using your secret merchant key. (For security purposes, you should never embed your secret merchant key in your app.)
 
-Set up an endpoint on your server that can receive an HTTP POST call for the token. In the `onSuccess` callback (when
-using your own form), you’ll need to POST the supplied token to your server. Make sure any communication with your
-server is [SSL secured](https://ipgtest.monri.com/en/security) to prevent eavesdropping.
+Set up an endpoint on your server that can receive an HTTP POST call for the token. In the `onSuccess` callback (when using your own form), you’ll need to POST the supplied token to your server. Make sure any communication with your server is [SSL secured](https://ipgtest.monri.com/en/security) to prevent eavesdropping.

@@ -1,7 +1,25 @@
+---
+cover: ../../.gitbook/assets/Blue Modern Marketing Manager LinkedIn Banner.png
+coverY: 0
+layout:
+  cover:
+    visible: true
+    size: full
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+---
+
 # Customers API
 
-Our customers API allows you to securely save customer data and payment methods. In order to associate customer's
-payment method for future payments you have to provide customer UUID in the transaction params, details below.
+Our customers API allows you to securely save customer data and payment methods. In order to associate customer's payment method for future payments you have to provide customer UUID in the transaction params, details below.
 
 ### [Your backend](https://github.com/MonriPayments/monri-ios/wiki/Customers-API#your-backend) <a href="#user-content-your-backend" id="user-content-your-backend"></a>
 
@@ -240,12 +258,10 @@ self.monri.customers().paymentMethods(request) { result in
 
 ### [Confirm payment with customer UUID - save card for future payments](https://github.com/MonriPayments/monri-ios/wiki/Customers-API#confirm-payment-with-customer-uuid---save-card-for-future-payments) <a href="#user-content-confirm-payment-with-customer-uuid---save-card-for-future-payments" id="user-content-confirm-payment-with-customer-uuid---save-card-for-future-payments"></a>
 
-In order to associate customer's payment method for future payments, beside customer's data which is optional, you have
-to provide also:
+In order to associate customer's payment method for future payments, beside customer's data which is optional, you have to provide also:
 
 * created customer UUID
-* clientSecret - please see our section
-  about [Payment API Integration](https://github.com/MonriPayments/monri-ios/wiki/Payment-API-Integration)
+* clientSecret - please see our section about [Payment API Integration](https://github.com/MonriPayments/monri-ios/wiki/Payment-API-Integration)
 
 ```swift
 let card = Card(number: "4111 1111 1111 1111", cvc: "123", expMonth: 10, expYear: 2031, tokenizePan: true).toPaymentMethodParams()

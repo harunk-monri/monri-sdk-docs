@@ -1,4 +1,23 @@
-# React-Native SDK
+---
+cover: ../../.gitbook/assets/Blue Modern Marketing Manager LinkedIn Banner.png
+coverY: 0
+layout:
+  cover:
+    visible: true
+    size: full
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+---
+
+# 🟣 ReactNative SDK
 
 The Monri React-Native SDK makes it easy to build an excellent payment experience in your Android/iOS app. It provides powerful, customizable, UI elements to use out-of-the-box to collect your users' payment details.
 
@@ -66,4 +85,3 @@ const result = await MonriAndroidIos.confirmPayment({
     },
   });
 ```
-

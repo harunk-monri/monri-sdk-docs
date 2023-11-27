@@ -1,27 +1,37 @@
+---
+cover: ../../.gitbook/assets/Blue Modern Marketing Manager LinkedIn Banner.png
+coverY: 0
+layout:
+  cover:
+    visible: true
+    size: full
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+---
+
 # Tokens API Integration
 
-Monri has created a ReactNative library for Android/iOS, allowing you to easily submit payments from an Android app.
-With our
-mobile library, we address PCI compliance by eliminating the need to send card data directly to your server. Instead,
-our libraries send the card data directly to our servers, where we can convert them to tokens.
+Monri has created a ReactNative library for Android/iOS, allowing you to easily submit payments from an Android app. With our mobile library, we address PCI compliance by eliminating the need to send card data directly to your server. Instead, our libraries send the card data directly to our servers, where we can convert them to tokens.
 
-Your app will receive the token back, and can then send the token to an endpoint on your server, where it can be used to
-process a payment.
+Your app will receive the token back, and can then send the token to an endpoint on your server, where it can be used to process a payment.
 
 ### Using tokens
 
-Using the payment token, however it was obtained, requires an API call from your server using your secret merchant
-key. (For security purposes, you should never embed your secret merchant key in your app.)
+Using the payment token, however it was obtained, requires an API call from your server using your secret merchant key. (For security purposes, you should never embed your secret merchant key in your app.)
 
-Set up an endpoint on your server that can receive an HTTP POST call for the token. In the `onSuccess` callback (when
-using your own form), you’ll need to POST the supplied token to your server. Make sure any communication with your
-server is [SSL secured](https://ipgtest.monri.com/en/security) to prevent eavesdropping.
+Set up an endpoint on your server that can receive an HTTP POST call for the token. In the `onSuccess` callback (when using your own form), you’ll need to POST the supplied token to your server. Make sure any communication with your server is [SSL secured](https://ipgtest.monri.com/en/security) to prevent eavesdropping.
 
 ### Building your own form
 
-If you build your own payment form, you’ll need to collect at least your customers’ card numbers and expiration dates.
-Monri strongly recommends collecting the CVC. You can optionally collect the user’s name and billing address for
-additional fraud protection.
+If you build your own payment form, you’ll need to collect at least your customers’ card numbers and expiration dates. Monri strongly recommends collecting the CVC. You can optionally collect the user’s name and billing address for additional fraud protection.
 
 Once you’ve collected a customer’s information, you will need to exchange the information for a Monri token.
 
