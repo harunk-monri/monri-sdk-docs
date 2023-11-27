@@ -9,7 +9,7 @@ The Monri iOS SDK makes it easy to build an excellent payment experience in your
 
 We also expose the low-level APIs that power those elements to make it easy to build fully custom forms. This guide will take you all the way from integrating our SDK to accepting payments from your users via credit cards.
 
-### [Installation/Configuration](https://github.com/MonriPayments/monri-ios#installationconfiguration) <a href="#user-content-installationconfiguration" id="user-content-installationconfiguration"></a>
+### [Installation/Configuration](installation-guide.md) <a href="#user-content-installationconfiguration" id="user-content-installationconfiguration"></a>
 
 #### Install and configure the SDK <a href="#user-content-install-and-configure-the-sdk" id="user-content-install-and-configure-the-sdk"></a>
 
@@ -39,14 +39,14 @@ pod update Monri
 
 For full installation/configuration guide check our wiki page at [Installation Guide](https://github.com/MonriPayments/monri-ios/wiki/Installation-Guide)
 
-## [Payment API Integration](https://github.com/MonriPayments/monri-ios#payment-api-integration) <a href="#user-content-payment-api-integration" id="user-content-payment-api-integration"></a>
+## [Payment API Integration](payment-api-integration.md) <a href="#user-content-payment-api-integration" id="user-content-payment-api-integration"></a>
 
 At some point in the flow of your app you'll obtain payment details from the user. After that you could:
 
 * use obtained payment details and proceed with charge (confirmPayment)
 * or tokenize obtained payment details for server side usage
 
-In [Payment API Integration](https://github.com/MonriPayments/monri-ios/wiki/Payment-API-Integration) it's explained how to:
+In [Payment API Integration](payment-api-integration.md) it's explained how to:
 
 * create payment
 * collect payment details
@@ -55,11 +55,11 @@ In [Payment API Integration](https://github.com/MonriPayments/monri-ios/wiki/Pay
 
 If you want to tokenize obtained payment details then continue to the "Tokens API Integration"
 
-## [Tokens API Integration](https://github.com/MonriPayments/monri-ios#tokens-api-integration) <a href="#user-content-tokens-api-integration" id="user-content-tokens-api-integration"></a>
+## [Tokens API Integration](tokens-api-integration.md) <a href="#user-content-tokens-api-integration" id="user-content-tokens-api-integration"></a>
 
 After you've obtained payment details its easy to securely transfer collected data via Tokens API.
 
-In [Tokens API Integration](https://github.com/MonriPayments/monri-ios/wiki/Tokens-API-Integration) it's explained how to:
+In [Tokens API Integration](tokens-api-integration.md)) it's explained how to:
 
 * create token request
 * create token
