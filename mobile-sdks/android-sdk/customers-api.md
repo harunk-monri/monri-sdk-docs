@@ -14,7 +14,10 @@ POST request on endpoint https://ipgtest.monri.com/v2/oauth Body:
 {
   "client_id": "Authenticity token",
   "client_secret": "Merchant key",
-  "scopes": ["customers", "payment-methods"],
+  "scopes": [
+    "customers",
+    "payment-methods"
+  ],
   "grant_type": "client_credentials"
 }
 ```

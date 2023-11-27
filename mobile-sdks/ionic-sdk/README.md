@@ -1,6 +1,7 @@
 # Ionic SDK
 
-The Monri Ionic SDK makes it easy to build an excellent payment experience in your Android/iOS app. It provides powerful, customizable, UI elements to use out-of-the-box to collect your users' payment details.
+The Monri Ionic SDK makes it easy to build an excellent payment experience in your Android/iOS app. It provides
+powerful, customizable, UI elements to use out-of-the-box to collect your users' payment details.
 
 ## Payment API Integration
 
@@ -46,7 +47,6 @@ In `package.json` add
 npm install
 npx cap sync
 ```
-
 
 ### Usage
 
