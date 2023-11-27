@@ -8,7 +8,7 @@ Instead, our libraries send the card data directly to our servers, where we can 
 
 Recently we've added a new way of simplified payment integration in your app.
 
-It consist of two steps:
+It consists of two steps:
 
 * create new payment on merchant's backend
 * confirm created payment on merchant's mobile application using SDK
@@ -32,36 +32,42 @@ Instructions for each route follows, although you may want to write your app to 
 ### Using the card input widget
 
 To collect card data from your customers directly, you can use
-Monri’s [CardMultilineWidget](https://github.com/monri/monri-android/blob/master/monri/src/main/java/com/monri/android/view/CardMultilineWidget.java)
-in your application. You can include it in any view’s layout file.
 
-```
-<com.monri.android.view.CardMultilineWidget
-    android:id="@+id/card_input_widget"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
-```
-
-This allows your customers to input all of the required data for their card: the number, the expiration date, and the
+This allows your customers to input all the required data for their card: the number, the expiration date, and the
 CVV code. Note that the value of the `Card` object is `null` if the data in the widget is either incomplete or fails
 client-side validity checks.
 
-```
-import com.monri.android.view.CardMultilineWidget;
-CardMultilineWidget cardInputWidget = (CardMultilineWidget) findViewById(R.id.card_input_widget);
-
-Card cardToSave = cardInputWidget.getCard();
-if (cardToSave == null) {
-    errorDialogHandler.showError("Invalid Card Data");
-}
-```
-
-If you have any other data that you would like to associate with the card, such as name, address, or ZIP code, you can
-put additional input controls on your layout and add them directly to the `Card` object.
-
-```
-cardToSave = cardToSave.toBuilder().name("Customer Name").build();
-cardToSave = cardToSave.toBuilder().addressZip("12345").build();
+```java
+new TextFormField(
+  keyboardType: TextInputType.number,
+  focusNode: _cardNumberFocusNode,
+  onFieldSubmitted: (_) {
+    FocusScope.of(context).requestFocus(_cvvFocusNode);
+  },
+  inputFormatters: [
+    FilteringTextInputFormatter.digitsOnly,
+    new LengthLimitingTextInputFormatter(19),
+    new CardNumberInputFormatter()
+  ],
+  controller: numberController,
+  decoration: new InputDecoration(
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(10.0),
+      borderSide:  BorderSide(color: Colors.transparent),
+    ),
+    filled: true,
+    icon: CardUtils.getCardIcon(_cardType),
+    labelText: 'Card Number',
+  ),
+  style: TextStyle(
+      color: widget.objectArgument.threeDS ? Colors.black45 : Colors.blue
+  ),
+  enabled: widget.objectArgument.threeDS? false : true,
+  onSaved: (String? value) {
+    _cardNumber = CardUtils.getCleanedNumber(value!);
+  },
+  validator: CardUtils.validateCardNum,
+),
 ```
 
 ### Building your own form
@@ -76,22 +82,30 @@ Once you’ve collected a customer’s information, you will need to exchange th
 
 To create a `Card` object from data you’ve collected from other forms, you can create the object with its constructor.
 
-```
-import com.monri.android.model.Card;
+```java
+import 'package:MonriPayments/src/payment_method.dart';
 
-//...
-//...
-public void onAddCard(String cardNumber, String cardExpMonth,
-                      String cardExpYear, String cardCVC) {
-  final Card card = Card.create(
-    cardNumber,
-    cardExpMonth,
-    cardExpYear,
-    cardCVC
-  );
+class Card extends PaymentMethod {
+  String number;
+  String cvc;
+  int expMonth;
+  int expYear;
+  bool tokenizePan;
 
-  card.validateNumber();
-  card.validateCVC();
+  Card(this.number, this.cvc, this.expMonth, this.expYear, this.tokenizePan);
+
+  @override
+  String paymentMethodType() => PaymentMethod.TYPE_CARD;
+
+  @override
+  Map<String, String> data() {
+    var data = Map<String, String>();
+    data["pan"] = number;
+    data["expiration_date"] = "$expYear$expMonth";
+    data["cvv"] = cvc;
+    data["tokenize_pan"] = "$tokenizePan";
+    return data;
+  }
 }
 ```
 
@@ -99,26 +113,51 @@ As you can see in the example above, the `Card` instance contains some helpers t
 the Luhn check, that the expiration date is the future, and that the CVC looks valid. You’ll probably want to validate
 these three things at once, so we’ve included a `validateCard` function that does so.
 
-```
-// The Card class will normalize the card number
-final Card card = Card.create("4242-4242-4242-4242", 12, 2020, "123");
-if (!card.validateCard()) {
-  // Show errors
-}
+```java
+  static String? validateCardNum(String? input) {
+    if (input == null || input.isEmpty) {
+      return ValidationMessages.filedRequired;
+    }
+
+    input = getCleanedNumber(input);
+
+    if (input.length < 8) {
+      return ValidationMessages.invalidCardNumber;
+    }
+
+    int sum = 0;
+    int length = input.length;
+    for (var i = 0; i < length; i++) {
+      // get digits in reverse order
+      int digit = int.parse(input[length - i - 1]);
+
+      // every 2nd number multiply with 2
+      if (i % 2 == 1) {
+        digit *= 2;
+      }
+      sum += digit > 9 ? (digit - 9) : digit;
+    }
+
+    if (sum % 10 == 0) {
+      return null;
+    }
+
+    return ValidationMessages.invalidCardNumber;
+  }
 ```
 
 ### Creating new payment on merchant's backend
 
 This step is preferably executed when you have enough information to create customer's order.
 
-For simplicity we'll show example using [curl](https://curl.haxx.se/) in PHP.
+For simplicity, we'll show example using [curl](https://curl.haxx.se/) in PHP.
 
 To create payment on our backend you'll need:
 
 * `merchant_key` (available on merchant's dashboard)
 * `authenticity_token` (available on merchant's dashboard)
 
-Additionally we require following fields:
+Additionally, we require following fields:
 
 | field             | length | type    | description                                               |
 |-------------------|--------|---------|-----------------------------------------------------------|
@@ -157,7 +196,7 @@ Request endpoint is `<base_url>/v2/payment/new` where base\_url is:
 * `https://ipgtest.monri.com` for TEST environment
 * `https://ipg.monri.com` for PROD environment
 
-_TIP_: Parametrize merchant\_key, authenticity\_token and base\_url so it can be easily changed when you are ready for
+_TIP_: Parametrize merchant\_key, authenticity\_token and base\_url, so it can be easily changed when you are ready for
 production environment.
 
 Payment/new response contains:
@@ -240,7 +279,7 @@ Steps:
 
 * result is delivered via `ResultCallback`
 * collect Customer params and create `CustomerParams` instance
-* create `TransactionParams` from `customerParams`, set other values if needed (eg override `order_info`)
+* create `TransactionParams` from `customerParams`, set other values if needed (e.g. override `order_info`)
 * obtain `PaymentMethodsParams` from card via card.toPaymentMethodParams()
 * create `ConfirmPaymentParams` from client\_secret, payment method params and transaction params
 * invoke `monri.confirmPayment(context, confirmPaymentParams)`
@@ -295,10 +334,10 @@ Body:
   "acquirer": "integration_acq",
   "order_number": "3159daf002e3809",
   "amount": 100,
-  "currency": "HRK",
+  "currency": "EUR",
   "ch_full_name": "John Doe",
   "outgoing_amount": 100,
-  "outgoing_currency": "HRK",
+  "outgoing_currency": "EUR",
   "approval_code": "687042",
   "response_code": "0000",
   "response_message": "approved",

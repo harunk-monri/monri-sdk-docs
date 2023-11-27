@@ -1,6 +1,6 @@
 # Tokens API Integration
 
-Our Android libraries let you easily accept mobile payments and manage customer information inside any Android app.
+Our Flutter libraries let you easily accept mobile payments and manage customer information inside any Android app.
 
 Monri has created a Java library for Android, allowing you to easily submit payments from an Android app. With our
 mobile library, we address PCI compliance by eliminating the need to send card data directly to your server. Instead,
@@ -10,62 +10,55 @@ to [tokens](https://monri.com/docs/api#tokens).
 Your app will receive the token back, and can then send the token to an endpoint on your server, where it can be used to
 process a payment.
 
-We support Android 4.4 (API level 19) and above.
-
-### Installation
-
-Installing the Monri Android library is simple using [Android Studio](https://developer.android.com/studio/intro)
-and [IntelliJ](https://www.jetbrains.com/help/idea/getting-started-with-android-development.html). You don’t need to
-clone a repo or download any files. Just add the following to your project’s `build.gradle` file, inside the
-dependencies section.
-
-```gradle
-implementation 'com.monri:monri-android:1.3.+'
-```
-
 ### Collecting credit card information
 
 At some point in the flow of your app, you’ll want to obtain payment details from the user. There are a couple ways to
 do this:
 
-* [Use our built-in card input widget to collect card information](https://monri.com/docs/mobile/android#card-input-widget)
-* [Build your own credit card form](https://monri.com/docs/mobile/android#credit-card-form)
+* Use our built-in card input widget to collect card information
+* Build your own credit card form
 
 Instructions for each route follows, although you may want to write your app to offer support for both.
 
 ### Using the card input widget
 
 To collect card data from your customers directly, you can use
-Monri’s [CardInputWidget](https://github.com/monri/monri-android/blob/master/monri/src/main/java/com/monri/android/view/CardInputWidget.java)
-in your application. You can include it in any view’s layout file.
 
-```
-<com.monri.android.view.CardInputWidget
-    android:id="@+id/card_input_widget"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
-```
-
-This allows your customers to input all of the required data for their card: the number, the expiration date, and the
+This allows your customers to input all the required data for their card: the number, the expiration date, and the
 CVV code. Note that the value of the `Card` object is `null` if the data in the widget is either incomplete or fails
 client-side validity checks.
 
-```
-import com.monri.android.view.CardInputWidget;
-CardInputWidget cardInputWidget = (CardInputWidget) findViewById(R.id.card_input_widget);
-
-Card cardToSave = cardInputWidget.getCard();
-if (cardToSave == null) {
-    errorDialogHandler.showError("Invalid Card Data");
-}
-```
-
-If you have any other data that you would like to associate with the card, such as name, address, or ZIP code, you can
-put additional input controls on your layout and add them directly to the `Card` object.
-
-```
-cardToSave = cardToSave.toBuilder().name("Customer Name").build();
-cardToSave = cardToSave.toBuilder().addressZip("12345").build();
+```java
+new TextFormField(
+  keyboardType: TextInputType.number,
+  focusNode: _cardNumberFocusNode,
+  onFieldSubmitted: (_) {
+    FocusScope.of(context).requestFocus(_cvvFocusNode);
+  },
+  inputFormatters: [
+    FilteringTextInputFormatter.digitsOnly,
+    new LengthLimitingTextInputFormatter(19),
+    new CardNumberInputFormatter()
+  ],
+  controller: numberController,
+  decoration: new InputDecoration(
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(10.0),
+      borderSide:  BorderSide(color: Colors.transparent),
+    ),
+    filled: true,
+    icon: CardUtils.getCardIcon(_cardType),
+    labelText: 'Card Number',
+  ),
+  style: TextStyle(
+      color: widget.objectArgument.threeDS ? Colors.black45 : Colors.blue
+  ),
+  enabled: widget.objectArgument.threeDS? false : true,
+  onSaved: (String? value) {
+    _cardNumber = CardUtils.getCleanedNumber(value!);
+  },
+  validator: CardUtils.validateCardNum,
+),
 ```
 
 ### Building your own form
@@ -80,22 +73,30 @@ Once you’ve collected a customer’s information, you will need to exchange th
 
 To create a `Card` object from data you’ve collected from other forms, you can create the object with its constructor.
 
-```
-import com.monri.android.model.Card;
+```java
+import 'package:MonriPayments/src/payment_method.dart';
 
-//...
-//...
-public void onAddCard(String cardNumber, String cardExpMonth,
-                      String cardExpYear, String cardCVC) {
-  final Card card = Card.create(
-    cardNumber,
-    cardExpMonth,
-    cardExpYear,
-    cardCVC
-  );
+class Card extends PaymentMethod {
+  String number;
+  String cvc;
+  int expMonth;
+  int expYear;
+  bool tokenizePan;
 
-  card.validateNumber();
-  card.validateCVC();
+  Card(this.number, this.cvc, this.expMonth, this.expYear, this.tokenizePan);
+
+  @override
+  String paymentMethodType() => PaymentMethod.TYPE_CARD;
+
+  @override
+  Map<String, String> data() {
+    var data = Map<String, String>();
+    data["pan"] = number;
+    data["expiration_date"] = "$expYear$expMonth";
+    data["cvv"] = cvc;
+    data["tokenize_pan"] = "$tokenizePan";
+    return data;
+  }
 }
 ```
 
@@ -103,37 +104,40 @@ As you can see in the example above, the `Card` instance contains some helpers t
 the Luhn check, that the expiration date is the future, and that the CVC looks valid. You’ll probably want to validate
 these three things at once, so we’ve included a `validateCard` function that does so.
 
-```
-// The Card class will normalize the card number
-final Card card = Card.create("4242-4242-4242-4242", 12, 2025, "123");
-if (!card.validateCard()) {
-  // Show errors
-}
-```
-
-#### Securely sending payment information to Monri
-
 ```java
-final Card card = Card.create("4111111111111111", 12, 2025, "123");
-// Remember to validate the card object before you use it to save time.
-if (!card.validateCard()) {
-  // Do not continue token creation.
-}
+  static String? validateCardNum(String? input) {
+    if (input == null || input.isEmpty) {
+      return ValidationMessages.filedRequired;
+    }
+
+    input = getCleanedNumber(input);
+
+    if (input.length < 8) {
+      return ValidationMessages.invalidCardNumber;
+    }
+
+    int sum = 0;
+    int length = input.length;
+    for (var i = 0; i < length; i++) {
+      // get digits in reverse order
+      int digit = int.parse(input[length - i - 1]);
+
+      // every 2nd number multiply with 2
+      if (i % 2 == 1) {
+        digit *= 2;
+      }
+      sum += digit > 9 ? (digit - 9) : digit;
+    }
+
+    if (sum % 10 == 0) {
+      return null;
+    }
+
+    return ValidationMessages.invalidCardNumber;
+  }
 ```
 
-You can also simply take the data from a `CardInputWidget`.
-
-```java
-// Remember that the card object will be null if the user inputs invalid data.
-Card card = cardInputWidget.getCard();
-if (card == null) {
-  // Do not continue token creation.
-}
-```
-
-However you create your `Card` object, you can now use it to collect payment.
-
-#### Tokens api
+#### Tokens API
 
 ```java
 final Monri monri = new Monri(
