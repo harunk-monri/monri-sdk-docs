@@ -1,6 +1,7 @@
 # Tokens API Integration
 
-Monri has created a Java library for Android, allowing you to easily submit payments from an Android app. With our
+Monri has created a ReactNative library for Android/iOS, allowing you to easily submit payments from an Android app.
+With our
 mobile library, we address PCI compliance by eliminating the need to send card data directly to your server. Instead,
 our libraries send the card data directly to our servers, where we can convert them
 to [tokens](https://monri.com/docs/api#tokens).
