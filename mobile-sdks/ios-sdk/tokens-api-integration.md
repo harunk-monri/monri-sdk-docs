@@ -152,7 +152,7 @@ Here are the variables and their definitions used when generating JSON documents
 | order\_info   | 3-100      | alphanumeric | short description of order being processed              |
 | order\_number | 1-40       | alphanumeric | unique identifier                                       |
 | amount        | 3-11       | integer      | amount is in minor units, ie. 10.24 USD is sent as 1024 |
-| currency      | predefined | alpha        | possible values are USD, EUR, BAM or HRK                |
+| currency      | predefined | alpha        | possible values are USD, EUR, BAM                       |
 
 #### [Processing data](https://github.com/MonriPayments/monri-ios/wiki/Tokens-API-Integration#processing-data) <a href="#user-content-processing-data" id="user-content-processing-data"></a>
 

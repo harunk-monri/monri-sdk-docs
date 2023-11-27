@@ -5,7 +5,7 @@ Our Android libraries let you easily accept mobile payments and manage customer 
 Monri has created a Java library for Android, allowing you to easily submit payments from an Android app. With our
 mobile library, we address PCI compliance by eliminating the need to send card data directly to your server. Instead,
 our libraries send the card data directly to our servers, where we can convert them
-to [tokens](https://monri.com/docs/api#tokens).
+to tokens.
 
 Your app will receive the token back, and can then send the token to an endpoint on your server, where it can be used to
 process a payment.
@@ -28,8 +28,8 @@ implementation 'com.monri:monri-android:1.3.+'
 At some point in the flow of your app, you’ll want to obtain payment details from the user. There are a couple ways to
 do this:
 
-* [Use our built-in card input widget to collect card information](https://monri.com/docs/mobile/android#card-input-widget)
-* [Build your own credit card form](https://monri.com/docs/mobile/android#credit-card-form)
+* Use our built-in card input widget to collect card information
+* Build your own credit card form
 
 Instructions for each route follows, although you may want to write your app to offer support for both.
 
@@ -131,7 +131,7 @@ if (card == null) {
 }
 ```
 
-However you create your `Card` object, you can now use it to collect payment.
+However, you create your `Card` object, you can now use it to collect payment.
 
 #### Tokens api
 
@@ -176,4 +176,4 @@ key. (For security purposes, you should never embed your secret merchant key in 
 
 Set up an endpoint on your server that can receive an HTTP POST call for the token. In the `onSuccess` callback (when
 using your own form), you’ll need to POST the supplied token to your server. Make sure any communication with your
-server is [SSL secured](https://monri.com/docs/security) to prevent eavesdropping.
+server is [SSL secured](https://ipgtest.monri.com/en/security) to prevent eavesdropping.

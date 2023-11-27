@@ -58,7 +58,7 @@ If you want to tokenize obtained payment details then continue to the "Tokens AP
 
 ## [Tokens API Integration](https://github.com/MonriPayments/monri-ios#tokens-api-integration) <a href="#user-content-tokens-api-integration" id="user-content-tokens-api-integration"></a>
 
-After you've obtained payment details it's easy to securely transfer collected data via Tokens API.
+After you've obtained payment details its easy to securely transfer collected data via Tokens API.
 
 In [Tokens API Integration](https://github.com/MonriPayments/monri-ios/wiki/Tokens-API-Integration) it's explained how
 to:

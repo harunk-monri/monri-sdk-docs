@@ -20,7 +20,7 @@ If you want to tokenize obtained payment details then continue to the "Tokens AP
 
 ## Tokens API Integration
 
-After you've obtained payment details it's easy to securely transfer collected data via Tokens API.
+After you've obtained payment details its easy to securely transfer collected data via Tokens API.
 
 In [Tokens API Integration](tokens-api-integration.md) it's explained how to:
 

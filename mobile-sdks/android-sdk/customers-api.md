@@ -1,6 +1,7 @@
 # Customers API
 
-Our customers API allows you to securely save customer data and payment methods. In order to associate customer's payment method for future payments you have to provide customer UUID in the transaction params, details below.
+Our customers API allows you to securely save customer data and payment methods. In order to associate customer's
+payment method for future payments you have to provide customer UUID in the transaction params, details below.
 
 ### Your backend
 
@@ -103,7 +104,7 @@ In order to update a `Customer` you’ve to provide:
 //...
 final CustomerData updateCustomerData = new CustomerData()
                                 .setEmail("update@email.com")
-                                .setName("Adnan")
+                                .setName("Harun")
                                 .setPhone("00387000112");
                         
 final UpdateCustomerParams updateCustomerParams = new UpdateCustomerParams(
@@ -276,10 +277,12 @@ monri.getMonriApi().customers().paymentMethods(
 
 ### Confirm payment with customer UUID - save card for future payments
 
-In order to associate customer's payment method for future payments, beside customer's data which is optional, you have to provide also:
+In order to associate customer's payment method for future payments, beside customer's data which is optional, you have
+to provide also:
 
 * created customer UUID
-* clientSecret - please see our section about [Payment API Integration](https://github.com/MonriPayments/monri-android/wiki/Payment-API-Integration#creating-new-payment-on-merchants-backend)
+* clientSecret - please see our section
+  about [Payment API Integration](payment-api-integration.md)
 
 ```java
 final Card card = new Card("4111 1111 1111 1111", 12, 2034, "123");

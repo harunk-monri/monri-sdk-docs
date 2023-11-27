@@ -5,7 +5,7 @@ Our Android libraries let you easily accept mobile payments and manage customer 
 Monri has created a Java library for Android, allowing you to easily submit payments from an Android app. With our
 mobile library, we address PCI compliance by eliminating the need to send card data directly to your server. Instead,
 our libraries send the card data directly to our servers, where we can convert them
-to [tokens](https://monri.com/docs/api#tokens).
+to tokens.
 
 Your app will receive the token back, and can then send the token to an endpoint on your server, where it can be used to
 process a payment.
@@ -57,7 +57,7 @@ If you want to tokenize obtained payment details then continue to the "Tokens AP
 
 ## Tokens API Integration
 
-After you've obtained payment details it's easy to securely transfer collected data via Tokens API.
+After you've obtained payment details its easy to securely transfer collected data via Tokens API.
 
 In [Tokens API Integration](tokens-api-integration.md) it's explained how to:
 

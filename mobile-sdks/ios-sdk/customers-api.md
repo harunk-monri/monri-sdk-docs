@@ -60,8 +60,8 @@ let accessToken = "Bearer *********************" //token from backend
 let customerRequestBody = CustomerData(
                 merchantCustomerUuid: "merchantUuid, optional if you want to use your own UUID",
                 description: "description",
-                email: "adnan.omerovic@monri.com",
-                name: "Adnan",
+                email: "harun.kolos@monri.com",
+                name: "Harun",
                 phone: "00387000111",
                 metadata: ["a": "b", "c": "d"],
                 zipCode: "71000",

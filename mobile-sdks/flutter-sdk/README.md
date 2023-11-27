@@ -78,7 +78,7 @@ Future<void> _continuePayment() async {
         cvv: 123,
         expirationMonth: 12,
         expirationYear: 2030,
-        cardHolderName: "Adnan Omerovic",
+        cardHolderName: "Harun Kolos",
         tokenizePan: true
     ));
     data = (await monriPayments.confirmPayment(CardConfirmPaymentParams.fromJSON(arguments))).toJson();

@@ -37,13 +37,13 @@ To create payment on our backend you'll need:
 
 Additionally we require following fields:
 
-| field             | length | type    | description                                               |
-|-------------------|--------|---------|-----------------------------------------------------------|
-| amount            | 1-11   | Integer | amount is in minor units, ie. 10.24 USD is sent as 1024   |
-| order\_number     | 2-40   | String  | unique order identifier                                   |
-| currency          | 3      | String  | One of supported currencies (BAM, HRK, EUR, USD, CHF etc) |
-| transaction\_type | enum   | String  | possible values are: `authorize` or `purchase`            |
-| order\_info       | 3-100  | String  | short description of order being processed                |
+| field             | length | type    | description                                             |
+|-------------------|--------|---------|---------------------------------------------------------|
+| amount            | 1-11   | Integer | amount is in minor units, ie. 10.24 USD is sent as 1024 |
+| order\_number     | 2-40   | String  | unique order identifier                                 |
+| currency          | 3      | String  | One of supported currencies (BAM, EUR, USD, CHF etc)    |
+| transaction\_type | enum   | String  | possible values are: `authorize` or `purchase`          |
+| order\_info       | 3-100  | String  | short description of order being processed              |
 
 Optionally we offer setting payment scenario, which can be one of:
 
@@ -196,10 +196,10 @@ Body:
   "acquirer": "integration_acq",
   "order_number": "3159daf002e3809",
   "amount": 100,
-  "currency": "HRK",
+  "currency": "EUR",
   "ch_full_name": "John Doe",
   "outgoing_amount": 100,
-  "outgoing_currency": "HRK",
+  "outgoing_currency": "EUR",
   "approval_code": "687042",
   "response_code": "0000",
   "response_message": "approved",

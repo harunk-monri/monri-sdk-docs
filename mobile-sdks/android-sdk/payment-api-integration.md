@@ -8,7 +8,7 @@ our libraries send the card data directly to our servers, where we can convert t
 
 Recently we've added a new way of simplified payment integration in your app.
 
-It consist of two steps:
+It consists of two steps:
 
 * create new payment on merchant's backend
 * confirm created payment on merchant's mobile application using SDK
@@ -120,13 +120,13 @@ To create payment on our backend you'll need:
 
 Additionally we require following fields:
 
-| field             | length | type    | description                                               |
-|-------------------|--------|---------|-----------------------------------------------------------|
-| amount            | 1-11   | Integer | amount is in minor units, ie. 10.24 USD is sent as 1024   |
-| order\_number     | 2-40   | String  | unique order identifier                                   |
-| currency          | 3      | String  | One of supported currencies (BAM, HRK, EUR, USD, CHF etc) |
-| transaction\_type | enum   | String  | possible values are: `authorize` or `purchase`            |
-| order\_info       | 3-100  | String  | short description of order being processed                |
+| field             | length | type    | description                                             |
+|-------------------|--------|---------|---------------------------------------------------------|
+| amount            | 1-11   | Integer | amount is in minor units, ie. 10.24 USD is sent as 1024 |
+| order\_number     | 2-40   | String  | unique order identifier                                 |
+| currency          | 3      | String  | One of supported currencies (BAM,  EUR, USD, CHF etc)   |
+| transaction\_type | enum   | String  | possible values are: `authorize` or `purchase`          |
+| order\_info       | 3-100  | String  | short description of order being processed              |
 
 Optionally we offer setting payment scenario, which can be one of:
 
@@ -225,15 +225,15 @@ Steps:
 * implement onActivityResult
 
 ```java
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        // For this to work you'll need to implement interface ResultCallback<PaymentResult>
-        // onSuccess method is invoked if payment is successfully processed
-        // onError method is invoked if an error occurred during processing
-        ResultCallback<PaymentResult> callback = this;
-        final boolean monriPaymentResult = monri.onPaymentResult(requestCode, data, callback);
-        if (!monriPaymentResult) {
-            super.onActivityResult(requestCode, resultCode, data);
+@Override
+protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+  // For this to work you'll need to implement interface ResultCallback<PaymentResult>
+  // onSuccess method is invoked if payment is successfully processed
+  // onError method is invoked if an error occurred during processing
+  ResultCallback<PaymentResult> callback = this;
+  final boolean monriPaymentResult = monri.onPaymentResult(requestCode, data, callback);
+if (!monriPaymentResult) {
+    super.onActivityResult(requestCode, resultCode, data);
         }
     }
 ```
@@ -295,10 +295,10 @@ Body:
   "acquirer": "integration_acq",
   "order_number": "3159daf002e3809",
   "amount": 100,
-  "currency": "HRK",
+  "currency": "EUR",
   "ch_full_name": "John Doe",
   "outgoing_amount": 100,
-  "outgoing_currency": "HRK",
+  "outgoing_currency": "EUR",
   "approval_code": "687042",
   "response_code": "0000",
   "response_message": "approved",

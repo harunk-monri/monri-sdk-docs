@@ -47,12 +47,12 @@ Instructions for each route follows, although you may want to write your app to 
 ### [Using the card input](https://github.com/MonriPayments/monri-ios/wiki/Installation-Guide#using-the-card-input) <a href="#user-content-using-the-card-input" id="user-content-using-the-card-input"></a>
 
 To collect card data from your customers directly, you can use
-Monri’s [CardInlineView](https://github.com/jasminsuljic/monri-ios/blob/master/Monri/Classes/CardInlineView.swift). Yo
+Monri’s [CardInlineView](https://github.com/jasminsuljic/monri-ios/blob/master/Monri/Classes/CardInlineView.swift). You
 can include it in any view:
 
 * Add a UITextField to your view in interface builder and change its class to `CardInlineView` (when using interface
   builder)
-* or initate a CardInlineView with one of its initializers (when instantiating from code):
+* or initiate a CardInlineView with one of its initializers (when instantiating from code):
     * init?(coder: aDecoder: NSCoder)
     * init(frame: CGRect) To get updates about entered card information on your view controller, add card to your view
       controller
@@ -63,7 +63,7 @@ class ViewController: UIViewController {
 }
 ```
 
-This allows your customers to input all of the required data for their card: the number, the expiration date, and the
+This allows your customers to input all the required data for their card: the number, the expiration date, and the
 CVV code.
 
 ```swift
