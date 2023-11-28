@@ -18,7 +18,7 @@ Instead, our libraries send the card data directly to our servers, where we can:
 
 Recently we've added a new way of simplified payment integration in your app.
 
-It consist of two steps:
+It consists of two steps:
 
 * create new payment on merchant's backend
 * confirm created payment on merchant's mobile application using SDK

@@ -37,7 +37,7 @@ pod install
 pod update Monri
 ```
 
-For full installation/configuration guide check our wiki page at [Installation Guide](https://github.com/MonriPayments/monri-ios/wiki/Installation-Guide)
+For full installation/configuration guide check our wiki page at [Installation Guide](installation-guide.md)
 
 ## [Payment API Integration](payment-api-integration.md) <a href="#user-content-payment-api-integration" id="user-content-payment-api-integration"></a>
 

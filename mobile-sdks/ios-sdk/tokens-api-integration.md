@@ -23,7 +23,7 @@ Our iOS libraries let you easily accept mobile payments inside any iOS app.
 
 Monri has created a Swift library for iOS, allowing you to easily submit payments from an iOS app.
 
-Before you continue read [Installation Guide](https://github.com/MonriPayments/monri-ios/wiki/Installation-Guide) if you have not already.
+Before you continue read [Installation Guide](installation-guide.md) if you have not already.
 
 With our mobile library, we address PCI compliance by eliminating the need to send card data directly to your server.
 
