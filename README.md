@@ -1,5 +1,5 @@
 ---
-cover: .gitbook/assets/Blue Modern Marketing Manager LinkedIn Banner.png
+cover: .gitbook/assets/cover.png
 coverY: 0
 ---
 

@@ -1,5 +1,5 @@
 ---
-cover: ../../.gitbook/assets/Blue Modern Marketing Manager LinkedIn Banner.png
+cover: ../../.gitbook/assets/cover.png
 coverY: 0
 ---
 
@@ -40,7 +40,7 @@ To create payment on our backend you'll need:
 * `merchant_key` (available on merchant's dashboard)
 * `authenticity_token` (available on merchant's dashboard)
 
-Additionally we require following fields:
+Additionally, we require following fields:
 
 | field             | length | type    | description                                             |
 |-------------------|--------|---------|---------------------------------------------------------|

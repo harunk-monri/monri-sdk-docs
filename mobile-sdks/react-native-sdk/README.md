@@ -1,5 +1,5 @@
 ---
-cover: ../../.gitbook/assets/Blue Modern Marketing Manager LinkedIn Banner.png
+cover: ../../.gitbook/assets/cover.png
 coverY: 0
 layout:
   cover:
@@ -19,7 +19,8 @@ layout:
 
 # 🟣 ReactNative SDK
 
-The Monri React-Native SDK makes it easy to build an excellent payment experience in your Android/iOS app. It provides powerful, customizable, UI elements to use out-of-the-box to collect your users' payment details.
+The Monri React-Native SDK makes it easy to build an excellent payment experience in your Android/iOS app. It provides
+powerful, customizable, UI elements to use out-of-the-box to collect your users' payment details.
 
 ## Payment API Integration
 

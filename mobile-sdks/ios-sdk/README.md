@@ -1,13 +1,15 @@
 ---
-cover: ../../.gitbook/assets/Blue Modern Marketing Manager LinkedIn Banner.png
+cover: ../../.gitbook/assets/cover.png
 coverY: 0
 ---
 
 # 🟣 iOS SDK
 
-The Monri iOS SDK makes it easy to build an excellent payment experience in your iOS app. It provides powerful, customizable, UI elements to use out-of-the-box to collect your users' payment details.
+The Monri iOS SDK makes it easy to build an excellent payment experience in your iOS app. It provides powerful,
+customizable, UI elements to use out-of-the-box to collect your users' payment details.
 
-We also expose the low-level APIs that power those elements to make it easy to build fully custom forms. This guide will take you all the way from integrating our SDK to accepting payments from your users via credit cards.
+We also expose the low-level APIs that power those elements to make it easy to build fully custom forms. This guide will
+take you all the way from integrating our SDK to accepting payments from your users via credit cards.
 
 ### [Installation/Configuration](installation-guide.md) <a href="#user-content-installationconfiguration" id="user-content-installationconfiguration"></a>
 
@@ -17,7 +19,8 @@ You can choose to install the Monri iOS SDK via CocoaPods.
 
 CocoaPods:
 
-1. If you haven't already, install the latest version of [CocoaPods](https://guides.cocoapods.org/using/getting-started.html)
+1. If you haven't already, install the latest version
+   of [CocoaPods](https://guides.cocoapods.org/using/getting-started.html)
 2. Add this line to your Podfile:
 
 ```
@@ -30,7 +33,8 @@ pod 'Monri', '~> 1.0'
 pod install
 ```
 
-4. Don't forget to use the `.xcworkspace` file to open your project in Xcode, instead of the `.xcodeproj`file, from here on out.
+4. Don't forget to use the `.xcworkspace` file to open your project in Xcode, instead of the `.xcodeproj`file, from here
+   on out.
 5. In the future, to update to the latest version of the SDK, just run:
 
 ```
