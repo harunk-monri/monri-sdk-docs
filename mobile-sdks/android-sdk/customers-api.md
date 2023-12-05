@@ -11,6 +11,8 @@ Our customers API allows you to securely save customer data and payment methods.
 
 In order to operate with our Customer API you have to obtain access token and forward to your mobile app.
 
+<figure><img src="../../.gitbook/assets/Screenshot 2023-12-05 at 15.02.38.png" alt="" width="375"><figcaption></figcaption></figure>
+
 Here is example how to create access token with your backend:
 
 POST request on endpoint https://ipgtest.monri.com/v2/oauth Body:
@@ -60,6 +62,8 @@ In order to create a `Customer` you’ve to provide:
 * access token
 * `CustomerData`
 
+<figure><img src="../../.gitbook/assets/Screenshot 2023-12-05 at 15.03.15.png" alt="" width="375"><figcaption></figcaption></figure>
+
 ```java
 //...
 String accessToken = "Bearer *********************" //access token from backend
@@ -106,6 +110,8 @@ In order to update a `Customer` you’ve to provide:
 * access token
 * `UpdateCustomerParams`
 
+<figure><img src="../../.gitbook/assets/Screenshot 2023-12-05 at 15.05.50.png" alt="" width="375"><figcaption></figcaption></figure>
+
 ```java
 //...
 final CustomerData updateCustomerData = new CustomerData()
@@ -144,6 +150,8 @@ In order to delete a `Customer` you’ve to provide:
 * access token
 * `DeleteCustomerParams`
 
+<figure><img src="../../.gitbook/assets/Screenshot 2023-12-05 at 15.04.11.png" alt="" width="375"><figcaption></figcaption></figure>
+
 ```java
 //...
 final DeleteCustomerParams deleteCustomerParams = new DeleteCustomerParams(
@@ -173,6 +181,8 @@ In order to retrieve a `Customer` you’ve to provide:
 
 * access token
 * `GetCustomerParams`
+
+<figure><img src="../../.gitbook/assets/Screenshot 2023-12-05 at 15.06.36.png" alt="" width="375"><figcaption></figcaption></figure>
 
 ```java
 //...
