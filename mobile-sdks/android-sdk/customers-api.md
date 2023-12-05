@@ -125,12 +125,12 @@ monri.getMonriApi()
               new ResultCallback<Customer>() {
                   @Override
                   public void onSuccess(final Customer result) {
-                      //...
+                     //...
                   }
   
                   @Override
                   public void onError(final Throwable throwable) {
-                      //...
+                     //...
                   }
               }
             );
