@@ -70,7 +70,7 @@ Once you’ve collected a customer’s information, you will need to exchange th
 
 To create a `Card` object from data you’ve collected from other forms, you can create the object with its constructor.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-12-05 at 15.33.10.png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/monri-android-validation.png" alt="" width="375"><figcaption></figcaption></figure>
 
 ```java
 import com.monri.android.model.Card;

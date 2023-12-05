@@ -21,7 +21,7 @@ layout:
 
 Our customers API allows you to securely save customer data and payment methods. In order to associate customer's payment method for future payments you have to provide customer UUID in the transaction params, details below.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-12-05 at 15.45.41.png" alt="" width="328"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/monri-ios-splash.png" alt="" width="328"><figcaption></figcaption></figure>
 
 ### [Your backend](https://github.com/MonriPayments/monri-ios/wiki/Customers-API#your-backend) <a href="#user-content-your-backend" id="user-content-your-backend"></a>
 

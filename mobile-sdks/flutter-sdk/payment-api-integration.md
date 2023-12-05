@@ -36,7 +36,7 @@ It reduces integration time significantly simply by requiring implementation of 
 
 Continue following this wiki to learn how to create payment on backend.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-12-05 at 16.01.25.png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/monri-flutter-splash.png" alt="" width="375"><figcaption></figcaption></figure>
 
 ### Collecting credit card information
 
@@ -53,7 +53,7 @@ To collect card data from your customers directly, you can use
 
 This allows your customers to input all the required data for their card: the number, the expiration date, and the CVV code. Note that the value of the `Card` object is `null` if the data in the widget is either incomplete or fails client-side validity checks.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-12-05 at 16.06.28.png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/monri-flutter-saved-card.png" alt="" width="375"><figcaption></figcaption></figure>
 
 ```java
 new TextFormField(
@@ -94,13 +94,13 @@ If you build your own payment form, you’ll need to collect at least your custo
 
 Once you’ve collected a customer’s information, you will need to exchange the information for a Monri token.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-12-05 at 16.02.17.png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/monri-flutter-input.png" alt="" width="375"><figcaption></figcaption></figure>
 
 #### Creating & validating cards from a custom form
 
 To create a `Card` object from data you’ve collected from other forms, you can create the object with its constructor.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-12-05 at 16.03.40.png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/monri-flutter-validation.png" alt="" width="375"><figcaption></figcaption></figure>
 
 ```java
 import 'package:MonriPayments/src/payment_method.dart';
@@ -164,7 +164,7 @@ As you can see in the example above, the `Card` instance contains some helpers t
   }
 ```
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-12-05 at 16.04.53.png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/monri-flutter-response.png" alt="" width="375"><figcaption></figcaption></figure>
 
 ### Creating new payment on merchant's backend
 

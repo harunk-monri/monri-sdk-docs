@@ -22,7 +22,7 @@ It reduces integration time significantly simply by requiring implementation of 
 
 Continue following this wiki to learn how to create payment on backend.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-12-05 at 15.31.54.png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/monri-android.png" alt="" width="375"><figcaption></figcaption></figure>
 
 ### Collecting credit card information
 
@@ -37,7 +37,7 @@ Instructions for each route follows, although you may want to write your app to 
 
 To collect card data from your customers directly, you can use Monri’s [CardMultilineWidget](https://github.com/monri/monri-android/blob/master/monri/src/main/java/com/monri/android/view/CardMultilineWidget.java) in your application. You can include it in any view’s layout file.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-12-05 at 15.30.25.png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/monri-android-cardmultiline.png" alt="" width="375"><figcaption></figcaption></figure>
 
 ```java
 <com.monri.android.view.CardMultilineWidget
