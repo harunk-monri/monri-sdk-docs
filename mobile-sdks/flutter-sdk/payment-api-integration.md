@@ -21,9 +21,7 @@ layout:
 
 Our Flutter libraries let you easily accept mobile payments inside any Android/iOS app.
 
-Monri has created a Flutter library for Android/iOS, allowing you to easily submit payments from an Android app. With
-our mobile library, we address PCI compliance by eliminating the need to send card data directly to your server.
-Instead, our libraries send the card data directly to our servers, where we can convert them to tokens.
+Monri has created a Flutter library for Android/iOS, allowing you to easily submit payments from an Android app. With our mobile library, we address PCI compliance by eliminating the need to send card data directly to your server. Instead, our libraries send the card data directly to our servers, where we can convert them to tokens.
 
 Recently we've added a new way of simplified payment integration in your app.
 
@@ -38,10 +36,11 @@ It reduces integration time significantly simply by requiring implementation of 
 
 Continue following this wiki to learn how to create payment on backend.
 
+<figure><img src="../../.gitbook/assets/Screenshot 2023-12-05 at 16.01.25.png" alt="" width="375"><figcaption></figcaption></figure>
+
 ### Collecting credit card information
 
-At some point in the flow of your app, you’ll want to obtain payment details from the user. There are a couple ways to
-do this:
+At some point in the flow of your app, you’ll want to obtain payment details from the user. There are a couple ways to do this:
 
 * Use our built-in card input widget to collect card information
 * Build your own credit card form
@@ -52,9 +51,9 @@ Instructions for each route follows, although you may want to write your app to 
 
 To collect card data from your customers directly, you can use
 
-This allows your customers to input all the required data for their card: the number, the expiration date, and the CVV
-code. Note that the value of the `Card` object is `null` if the data in the widget is either incomplete or fails
-client-side validity checks.
+This allows your customers to input all the required data for their card: the number, the expiration date, and the CVV code. Note that the value of the `Card` object is `null` if the data in the widget is either incomplete or fails client-side validity checks.
+
+<figure><img src="../../.gitbook/assets/Screenshot 2023-12-05 at 16.06.28.png" alt="" width="375"><figcaption></figcaption></figure>
 
 ```java
 new TextFormField(
@@ -91,15 +90,17 @@ new TextFormField(
 
 ### Building your own form
 
-If you build your own payment form, you’ll need to collect at least your customers’ card numbers and expiration dates.
-Monri strongly recommends collecting the CVC. You can optionally collect the user’s name and billing address for
-additional fraud protection.
+If you build your own payment form, you’ll need to collect at least your customers’ card numbers and expiration dates. Monri strongly recommends collecting the CVC. You can optionally collect the user’s name and billing address for additional fraud protection.
 
 Once you’ve collected a customer’s information, you will need to exchange the information for a Monri token.
+
+<figure><img src="../../.gitbook/assets/Screenshot 2023-12-05 at 16.02.17.png" alt="" width="375"><figcaption></figcaption></figure>
 
 #### Creating & validating cards from a custom form
 
 To create a `Card` object from data you’ve collected from other forms, you can create the object with its constructor.
+
+<figure><img src="../../.gitbook/assets/Screenshot 2023-12-05 at 16.03.40.png" alt="" width="375"><figcaption></figcaption></figure>
 
 ```java
 import 'package:MonriPayments/src/payment_method.dart';
@@ -128,9 +129,7 @@ class Card extends PaymentMethod {
 }
 ```
 
-As you can see in the example above, the `Card` instance contains some helpers to validate that the card number passes
-the Luhn check, that the expiration date is the future, and that the CVC looks valid. You’ll probably want to validate
-these three things at once, so we’ve included a `validateCard` function that does so.
+As you can see in the example above, the `Card` instance contains some helpers to validate that the card number passes the Luhn check, that the expiration date is the future, and that the CVC looks valid. You’ll probably want to validate these three things at once, so we’ve included a `validateCard` function that does so.
 
 ```java
   static String? validateCardNum(String? input) {
@@ -165,6 +164,8 @@ these three things at once, so we’ve included a `validateCard` function that d
   }
 ```
 
+<figure><img src="../../.gitbook/assets/Screenshot 2023-12-05 at 16.04.53.png" alt="" width="375"><figcaption></figcaption></figure>
+
 ### Creating new payment on merchant's backend
 
 This step is preferably executed when you have enough information to create customer's order.
@@ -179,7 +180,7 @@ To create payment on our backend you'll need:
 Additionally, we require following fields:
 
 | field             | length | type    | description                                             |
-|-------------------|--------|---------|---------------------------------------------------------|
+| ----------------- | ------ | ------- | ------------------------------------------------------- |
 | amount            | 1-11   | Integer | amount is in minor units, ie. 10.24 USD is sent as 1024 |
 | order\_number     | 2-40   | String  | unique order identifier                                 |
 | currency          | 3      | String  | One of supported currencies (BAM, EUR, USD, CHF etc)    |
@@ -189,11 +190,10 @@ Additionally, we require following fields:
 Optionally we offer setting payment scenario, which can be one of:
 
 | field    | length | type   | description                                           |
-|----------|--------|--------|-------------------------------------------------------|
+| -------- | ------ | ------ | ----------------------------------------------------- |
 | scenario | enum   | String | possible values are: `charge` or `add_payment_method` |
 
-Scenario `charge` charges customer amount. Depending on `transaction_type` amount is reserved (authorize) or captured (
-purchase).
+Scenario `charge` charges customer amount. Depending on `transaction_type` amount is reserved (authorize) or captured ( purchase).
 
 Scenario `add_payment_method` provides simple way to implement 'Save card for future payments' functionality.
 
@@ -215,16 +215,13 @@ Request endpoint is `<base_url>/v2/payment/new` where base\_url is:
 * `https://ipgtest.monri.com` for TEST environment
 * `https://ipg.monri.com` for PROD environment
 
-_TIP_: Parametrize merchant\_key, authenticity\_token and base\_url, so it can be easily changed when you are ready for
-production environment.
+_TIP_: Parametrize merchant\_key, authenticity\_token and base\_url, so it can be easily changed when you are ready for production environment.
 
 Payment/new response contains:
 
 * status: String: approved | declined
-* id: String - Unique payment identifier used to track payment flow on Monri's side. Useful for debugging if something
-  goes wrong. Save this value in your database.
-* client\_secret: String - Value you'll send to your application which then will use this secret to confirm payment
-  using Monri Android SDK.
+* id: String - Unique payment identifier used to track payment flow on Monri's side. Useful for debugging if something goes wrong. Save this value in your database.
+* client\_secret: String - Value you'll send to your application which then will use this secret to confirm payment using Monri Android SDK.
 
 Request example in PHP:
 
@@ -273,8 +270,7 @@ var_dump($response);
 
 ### Confirm payment on merchant's application
 
-After you've created payment on a backend and sent client\_secret back to your application you need to confirm payment
-using Monri's SDK.
+After you've created payment on a backend and sent client\_secret back to your application you need to confirm payment using Monri's SDK.
 
 Steps:
 
@@ -309,7 +305,7 @@ _NOTE_ Values set in `TransactionParams` and `CustomerParams` will override thos
 CustomerParams:
 
 | attribute  | length | type   | description                                                                        |
-|------------|--------|--------|------------------------------------------------------------------------------------|
+| ---------- | ------ | ------ | ---------------------------------------------------------------------------------- |
 | full\_name | 3-30   | String | buyer's full name                                                                  |
 | address    | 3-100  | String | buyer's address                                                                    |
 | city       | 3-30   | String | buyer's city                                                                       |
@@ -322,20 +318,17 @@ TransactionParams is used to override values set in `payment/new`.
 
 ***
 
-Integration example is available in SDK's example and
-on [this link](https://github.com/MonriPayments/monri-android/blob/master/app/src/main/java/com/monri/android/example/PaymentPickerActivity.java)
+Integration example is available in SDK's example and on [this link](https://github.com/MonriPayments/monri-android/blob/master/app/src/main/java/com/monri/android/example/PaymentPickerActivity.java)
 
 ### Getting payment result on merchant's backend
 
-Although you can easily collect payment result directly in application via `onSuccess` call it's better to implement
-callback listener (WebHook) on your backend.
+Although you can easily collect payment result directly in application via `onSuccess` call it's better to implement callback listener (WebHook) on your backend.
 
 Requirements:
 
 * it must be available over the Internet
 * it must be secured (HTTPS)
-* it must be set in merchant's setup on Monri's dashboard (if you are not able to set this value contact
-  support@monri.com)
+* it must be set in merchant's setup on Monri's dashboard (if you are not able to set this value contact support@monri.com)
 
 How it works:
 
@@ -382,7 +375,7 @@ Body:
 Headers:
 
 | header              | value                                                                                                                                         |
-|---------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | accept-encoding     | gzip;q=1.0,deflate;q=0.6,identity;q=0.3                                                                                                       |
 | authorization       | WP3-callback d5e4528ad8a0e0f4262e518c663d5ff83cd4a8f381db68f9d30f99961409ceebb719c16d423757fc36c532b902c987012f5825dc8d32dde3a9b7ed95876be77a |
 | content-type        | application/json                                                                                                                              |
