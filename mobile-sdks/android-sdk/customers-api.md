@@ -45,9 +45,11 @@ Create Monri instance in onCreate method (or before):
 ```java
 @Override
 protected void onCreate(Bundle savedInstanceState) {
-    //...
-        monri = new Monri(((ActivityResultCaller) this), MonriApiOptions.create("merchant authenticity token", true));
-    //...
+  //...
+    monri = new Monri(((ActivityResultCaller) this), 
+    MonriApiOptions.create("merchant authenticity token", 
+    true));
+  //...
 }
 ```
 
@@ -63,7 +65,7 @@ In order to create a `Customer` you’ve to provide:
 String accessToken = "Bearer *********************" //access token from backend
 
 CustomerData customerData = new CustomerData()
-.setMerchantCustomerUuid(merchantCustomerId)//optional, you can use your own uuid
+.setMerchantCustomerUuid(merchantCustomerId) //optional, you can use your own uuid
 .setDescription("description")
 .setEmail("harun.kolos@monri.com")
 .setName("Harun")
