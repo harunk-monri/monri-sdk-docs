@@ -24,7 +24,7 @@ payment method for future payments you have to provide customer UUID in the tran
 
 <figure><img src="../../.gitbook/assets/monri-ios-splash.png" alt="" width="328"><figcaption></figcaption></figure>
 
-### [Your backend](https://github.com/MonriPayments/monri-ios/wiki/Customers-API#your-backend) <a href="#user-content-your-backend" id="user-content-your-backend"></a>
+### Your backend <a href="#user-content-your-backend" id="user-content-your-backend"></a>
 
 In order to operate with our Customer API you have to obtain access token and forward to your mobile app.
 
@@ -55,7 +55,7 @@ Response example:
 }
 ```
 
-### [ViewController setup](https://github.com/MonriPayments/monri-ios/wiki/Customers-API#viewcontroller-setup) <a href="#user-content-viewcontroller-setup" id="user-content-viewcontroller-setup"></a>
+### ViewController setup <a href="#user-content-viewcontroller-setup" id="user-content-viewcontroller-setup"></a>
 
 Create MonriApi instance:
 
@@ -67,7 +67,7 @@ Create MonriApi instance:
     }()
 ```
 
-### [Create a customer](https://github.com/MonriPayments/monri-ios/wiki/Customers-API#create-a-customer) <a href="#user-content-create-a-customer" id="user-content-create-a-customer"></a>
+### Create a customer <a href="#user-content-create-a-customer" id="user-content-create-a-customer"></a>
 
 In order to create a `Customer` you’ve to provide:
 
@@ -104,7 +104,7 @@ let createCustomerParams = CreateCustomerParams(accessToken: accessToken, custom
 //...
 ```
 
-### [Update a customer](https://github.com/MonriPayments/monri-ios/wiki/Customers-API#update-a-customer) <a href="#user-content-update-a-customer" id="user-content-update-a-customer"></a>
+### Update a customer <a href="#user-content-update-a-customer" id="user-content-update-a-customer"></a>
 
 In order to update a `Customer` you’ve to provide:
 
@@ -138,7 +138,7 @@ self.monri.customers().update(customerUpdateRequest) { (result: CustomerResult) 
 //...
 ```
 
-### [Delete a customer](https://github.com/MonriPayments/monri-ios/wiki/Customers-API#delete-a-customer) <a href="#user-content-delete-a-customer" id="user-content-delete-a-customer"></a>
+### Delete a customer <a href="#user-content-delete-a-customer" id="user-content-delete-a-customer"></a>
 
 In order to delete a `Customer` you’ve to provide:
 
@@ -163,7 +163,7 @@ self.monri.customers().delete(customerDeleteRequest) { result in
 //...
 ```
 
-### [Retrieve a customer](https://github.com/MonriPayments/monri-ios/wiki/Customers-API#retrieve-a-customer) <a href="#user-content-retrieve-a-customer" id="user-content-retrieve-a-customer"></a>
+### Retrieve a customer <a href="#user-content-retrieve-a-customer" id="user-content-retrieve-a-customer"></a>
 
 In order to retrieve a `Customer` you’ve to provide:
 
@@ -188,7 +188,7 @@ self.monri.customers().get(customerRetrieveRequest) { result in
 //...
 ```
 
-### [Retrieve a customer via Merchant Uuid](https://github.com/MonriPayments/monri-ios/wiki/Customers-API#retrieve-a-customer-via-merchant-uuid) <a href="#user-content-retrieve-a-customer-via-merchant-uuid" id="user-content-retrieve-a-customer-via-merchant-uuid"></a>
+### Retrieve a customer via Merchant Uuid <a href="#user-content-retrieve-a-customer-via-merchant-uuid" id="user-content-retrieve-a-customer-via-merchant-uuid"></a>
 
 In order to retrieve a `Customer` via Merchant UUID you’ve to provide:
 
@@ -213,7 +213,7 @@ self.monri.customers().getViaMerchantCustomerUuid(customerRetrieveMerchantIdRequ
 //...
 ```
 
-### [Retrieve all customers](https://github.com/MonriPayments/monri-ios/wiki/Customers-API#retrieve-all-customers) <a href="#user-content-retrieve-all-customers" id="user-content-retrieve-all-customers"></a>
+### Retrieve all customers <a href="#user-content-retrieve-all-customers" id="user-content-retrieve-all-customers"></a>
 
 In order to get all customers you’ve to provide:
 
@@ -232,7 +232,7 @@ self.monri.customers().all("accessToken") { result in
 //...
 ```
 
-### [Retrieve customer payment methods](https://github.com/MonriPayments/monri-ios/wiki/Customers-API#retrieve-customer-payment-methods) <a href="#user-content-retrieve-customer-payment-methods" id="user-content-retrieve-customer-payment-methods"></a>
+### Retrieve customer payment methods <a href="#user-content-retrieve-customer-payment-methods" id="user-content-retrieve-customer-payment-methods"></a>
 
 In order to retrieve all customer payment methods you’ve to provide:
 
@@ -259,14 +259,14 @@ self.monri.customers().paymentMethods(request) { result in
 //...
 ```
 
-### [Confirm payment with customer UUID - save card for future payments](https://github.com/MonriPayments/monri-ios/wiki/Customers-API#confirm-payment-with-customer-uuid---save-card-for-future-payments) <a href="#user-content-confirm-payment-with-customer-uuid---save-card-for-future-payments" id="user-content-confirm-payment-with-customer-uuid---save-card-for-future-payments"></a>
+### Confirm payment with customer UUID - save card for future payments <a href="#user-content-confirm-payment-with-customer-uuid---save-card-for-future-payments" id="user-content-confirm-payment-with-customer-uuid---save-card-for-future-payments"></a>
 
 In order to associate customer's payment method for future payments, beside customer's data which is optional, you have
 to provide also:
 
 * created customer UUID
 * clientSecret - please see our section
-  about [Payment API Integration](https://github.com/MonriPayments/monri-ios/wiki/Payment-API-Integration)
+  about [Payment API Integration](payment-api-integration.md)
 
 ```swift
 let card = Card(number: "4111 1111 1111 1111", cvc: "123", expMonth: 10, expYear: 2031, tokenizePan: true).toPaymentMethodParams()

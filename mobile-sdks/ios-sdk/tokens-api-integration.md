@@ -34,7 +34,7 @@ Instead, our libraries send the card data directly to our servers, where we can:
 
 To learn how to convert data to tokens continue with this guide.
 
-### [Create TokenRequest on merchant's backend](https://github.com/MonriPayments/monri-ios/wiki/Tokens-API-Integration#create-tokenrequest-on-merchants-backend) <a href="#user-content-create-tokenrequest-on-merchants-backend" id="user-content-create-tokenrequest-on-merchants-backend"></a>
+### Create TokenRequest on merchant's backend <a href="#user-content-create-tokenrequest-on-merchants-backend" id="user-content-create-tokenrequest-on-merchants-backend"></a>
 
 This step is usually executed before presenting form for collecting payment details.
 
@@ -58,7 +58,7 @@ Steps:
 
 Provide TokenRequest to the application to proceed with `monri.createToken` functionality
 
-### [Converting card data to token on your app](https://github.com/MonriPayments/monri-ios/wiki/Tokens-API-Integration#converting-card-data-to-token-on-your-app) <a href="#user-content-converting-card-data-to-token-on-your-app" id="user-content-converting-card-data-to-token-on-your-app"></a>
+### Converting card data to token on your app <a href="#user-content-converting-card-data-to-token-on-your-app" id="user-content-converting-card-data-to-token-on-your-app"></a>
 
 After you've created TokenRequest on your backend simply proceed with:
 
@@ -66,7 +66,7 @@ After you've created TokenRequest on your backend simply proceed with:
 * collecting card details
 * invoking monri.createToken for created TokenRequest
 
-#### [Creating Monri instance](https://github.com/MonriPayments/monri-ios/wiki/Tokens-API-Integration#creating-monri-instance) <a href="#user-content-creating-monri-instance" id="user-content-creating-monri-instance"></a>
+#### Creating Monri instance <a href="#user-content-creating-monri-instance" id="user-content-creating-monri-instance"></a>
 
 To create Monri instance you'll need:
 
@@ -107,13 +107,13 @@ monri.createToken(tokenRequest, paymentMethod: card) {
 }
 ```
 
-### [Submitting Token to Merchant's backend](https://github.com/MonriPayments/monri-ios/wiki/Tokens-API-Integration#submitting-token-to-merchants-backend) <a href="#user-content-submitting-token-to-merchants-backend" id="user-content-submitting-token-to-merchants-backend"></a>
+### Submitting Token to Merchant's backend <a href="#user-content-submitting-token-to-merchants-backend" id="user-content-submitting-token-to-merchants-backend"></a>
 
 After invoking `createToken` obtained card details are now represented by token.
 
 To use token for transaction authorization simply submit token to your backend.
 
-### [Using Token for Transaction Authorization](https://github.com/MonriPayments/monri-ios/wiki/Tokens-API-Integration#using-token-for-transaction-authorization) <a href="#user-content-using-token-for-transaction-authorization" id="user-content-using-token-for-transaction-authorization"></a>
+### Using Token for Transaction Authorization <a href="#user-content-using-token-for-transaction-authorization" id="user-content-using-token-for-transaction-authorization"></a>
 
 After you have:
 
@@ -125,7 +125,7 @@ You can use token to execute transaction authorization.
 
 Continue with this guide to learn how to use token for transaction authorization.
 
-### [Requirements](https://github.com/MonriPayments/monri-ios/wiki/Tokens-API-Integration#requirements) <a href="#user-content-requirements" id="user-content-requirements"></a>
+### Requirements <a href="#user-content-requirements" id="user-content-requirements"></a>
 
 Integration must be done within our test environment first. When this process is finished and approved by our staff, you
 may go live and start processing with real money.
@@ -139,13 +139,13 @@ If you don't have a test merchant account, please contact us at [support@monri.c
 will open one for you. Then you can login into your account
 at [https://ipgtest.monri.com/ba-hr/login](https://ipgtest.monri.com/ba-hr/login) with login and password provided.
 
-### [Transactions API](https://github.com/MonriPayments/monri-ios/wiki/Tokens-API-Integration#transactions-api) <a href="#user-content-transactions-api" id="user-content-transactions-api"></a>
+### Transactions API <a href="#user-content-transactions-api" id="user-content-transactions-api"></a>
 
-#### [Variables - names, lengths and formats](https://github.com/MonriPayments/monri-ios/wiki/Tokens-API-Integration#variables---names-lengths-and-formats) <a href="#user-content-variables---names-lengths-and-formats" id="user-content-variables---names-lengths-and-formats"></a>
+#### Variables - names, lengths and formats <a href="#user-content-variables---names-lengths-and-formats" id="user-content-variables---names-lengths-and-formats"></a>
 
 Here are the variables and their definitions used when generating JSON documents for API calls:
 
-#### [Buyer's profile](https://github.com/MonriPayments/monri-ios/wiki/Tokens-API-Integration#buyers-profile) <a href="#user-content-buyers-profile" id="user-content-buyers-profile"></a>
+#### Buyer's profile <a href="#user-content-buyers-profile" id="user-content-buyers-profile"></a>
 
 | name           | length | format       | additional info   |
 |----------------|--------|--------------|-------------------|
@@ -157,13 +157,13 @@ Here are the variables and their definitions used when generating JSON documents
 | ch\_phone      | 3-30   | alphanumeric | buyer's phone     |
 | ch\_email      | 3-100  | alphanumeric | buyer's email     |
 
-#### [Card details](https://github.com/MonriPayments/monri-ios/wiki/Tokens-API-Integration#card-details) <a href="#user-content-card-details" id="user-content-card-details"></a>
+#### Card details <a href="#user-content-card-details" id="user-content-card-details"></a>
 
 | name           | length | format       | additional info                                                                                       |
 |----------------|--------|--------------|-------------------------------------------------------------------------------------------------------|
 | temp\_card\_id | 0-40   | alphanumeric | value representing tokenized card data - `THIS IS YOUR TOKEN (same one returned by createToken call)` |
 
-#### [Order details](https://github.com/MonriPayments/monri-ios/wiki/Tokens-API-Integration#order-details) <a href="#user-content-order-details" id="user-content-order-details"></a>
+#### Order details <a href="#user-content-order-details" id="user-content-order-details"></a>
 
 | name          | length     | format       | additional info                                         |
 |---------------|------------|--------------|---------------------------------------------------------|
@@ -172,7 +172,7 @@ Here are the variables and their definitions used when generating JSON documents
 | amount        | 3-11       | integer      | amount is in minor units, ie. 10.24 USD is sent as 1024 |
 | currency      | predefined | alpha        | possible values are USD, EUR, BAM                       |
 
-#### [Processing data](https://github.com/MonriPayments/monri-ios/wiki/Tokens-API-Integration#processing-data) <a href="#user-content-processing-data" id="user-content-processing-data"></a>
+#### Processing data <a href="#user-content-processing-data" id="user-content-processing-data"></a>
 
 | name                     | length     | format       | additional info                                                                                                                          |
 |--------------------------|------------|--------------|------------------------------------------------------------------------------------------------------------------------------------------|
@@ -184,9 +184,9 @@ Here are the variables and their definitions used when generating JSON documents
 | number\_of\_installments | 1-2        | integer      | range 2-12                                                                                                                               |
 | moto                     | predefined | boolean      | possible value is true or false; missing variable is equivalent to false                                                                 |
 
-#### [Transaction messages](https://github.com/MonriPayments/monri-ios/wiki/Tokens-API-Integration#transaction-messages) <a href="#user-content-transaction-messages" id="user-content-transaction-messages"></a>
+#### Transaction messages <a href="#user-content-transaction-messages" id="user-content-transaction-messages"></a>
 
-#### [Authorization](https://github.com/MonriPayments/monri-ios/wiki/Tokens-API-Integration#authorization) <a href="#user-content-authorization" id="user-content-authorization"></a>
+#### Authorization <a href="#user-content-authorization" id="user-content-authorization"></a>
 
 Authorization is a preferred transaction type for e-commerce. Merchant must capture these transactions within 28 days in
 order to transfer the money from buyer's account to his own. This transaction can also be voided if buyer cancel the
@@ -216,7 +216,7 @@ merchant `account.authenticity_token` is auto generated value and is copied from
 
 `NOTICE` Client does not send a TID/MID pair in authorization message, those are set in merchant account.
 
-[\*\*Authorization request example \*\*](https://github.com/MonriPayments/monri-ios/wiki/Tokens-API-Integration#authorization-request-example)
+### Authorization request example
 
 ```json5
 {
@@ -246,12 +246,12 @@ This JSON is now posted to `https://ipgtest.monri.com/v2/transaction`.
 
 `IMPORTANT` Parametrize `https://ipgtest.monri.com` URL, in production mode the subdomain will be different.
 
-If all values pass validations at our side, transaction is send to the bank and response is returned. This response may
+If all values pass validations at our side, transaction is sent to the bank and response is returned. This response may
 look like this:
 
 * **HTTP status code:** 201 - Created
-* **HTTP headers:** {:connection=>"close", :date=>"Tue, 25 Oct 2011 01:18:37 GMT", :
-  location=>"[https://ipgtest.monri.com/transactions/845](https://ipgtest.monri.com/transactions/845)", :
+* **HTTP headers:** {:connection=>"close", :date=>"Tue, 25 Oct 2022 01:18:37 GMT", :
+  location=>"[https://ipgtest.monri.com/transactions/{number}](https://ipgtest.monri.com/transactions/{number})", :
   content\_type=>"application/json; charset=utf-8", :cache\_control=>"no-cache", :x\_ua\_compatible=>"IE=Edge", :
   x\_runtime=>"1.475305", :transfer\_encoding=>"chunked"}
 * **HTTP body:**
@@ -276,7 +276,7 @@ look like this:
     "acsv": null,
     "cc_type": "visa",
     "status": "approved",
-    "created_at": "2019-09-12T07:12:27.019+02:00",
+    "created_at": "2023-09-12T07:12:27.019+02:00",
     "transaction_type": "purchase",
     "enrollment": "N",
     "authentication": null,
@@ -317,9 +317,10 @@ response may look like this:
 
 This invalid request is also recorded and errors are visible through merchant account interface.
 
-#### [Purchase](https://github.com/MonriPayments/monri-ios/wiki/Tokens-API-Integration#purchase) <a href="#user-content-purchase" id="user-content-purchase"></a>
+#### Purchase <a href="#user-content-purchase" id="user-content-purchase"></a>
 
-Purchase doesn't need to be approved, funds are transfered in next settlement between issuer and acquirer banks, usually
+Purchase doesn't need to be approved, funds are transferred in next settlement between issuer and acquirer banks,
+usually
 within one business day. These transactions can be refunded within 180 days.
 
 This message has the same structure as
@@ -330,15 +331,15 @@ fields should be treated in the same way.
 
 NOTICE purchase message can be [refunded](https://ipgtest.monri.com/en/documentation/direct#refund) within 180 days.
 
-#### [Capture](https://github.com/MonriPayments/monri-ios/wiki/Tokens-API-Integration#capture) <a href="#user-content-capture" id="user-content-capture"></a>
+#### Capture <a href="#user-content-capture" id="user-content-capture"></a>
 
 Refer to [direct api documentation](https://ipgtest.monri.com/en/documentation/direct#capture).
 
-#### [Refund](https://github.com/MonriPayments/monri-ios/wiki/Tokens-API-Integration#refund) <a href="#user-content-refund" id="user-content-refund"></a>
+#### Refund <a href="#user-content-refund" id="user-content-refund"></a>
 
 Refer to [direct api documentation](https://ipgtest.monri.com/en/documentation/direct#refund)
 
-#### [Void](https://github.com/MonriPayments/monri-ios/wiki/Tokens-API-Integration#void) <a href="#user-content-void" id="user-content-void"></a>
+#### Void <a href="#user-content-void" id="user-content-void"></a>
 
 Refer to [direct api documentation](https://ipgtest.monri.com/en/documentation/direct#void)
 
@@ -428,7 +429,7 @@ WebPay will return [response](https://ipgtest.monri.com/ba-hr/documentation/dire
 a regular authorize or purchase request messages. Only difference is that _eci_, _xid_, _acsv_, _enrollment_ and
 _authentication_ fields are now populated in response JSON according to 3-DS rules.
 
-#### [List of response codes](https://github.com/MonriPayments/monri-ios/wiki/Tokens-API-Integration#list-of-response-codes) <a href="#user-content-list-of-response-codes" id="user-content-list-of-response-codes"></a>
+#### [List of response codes](https://ipgtest.monri.com/en/documentation/list-of-response-codes) <a href="#user-content-list-of-response-codes" id="user-content-list-of-response-codes"></a>
 
 Here is the list of response codes and their description:
 
@@ -512,12 +513,12 @@ Here is the list of response codes and their description:
 * 5052 - RISK: Number of repeats per cardholder e-mail
 * 6000 - Systan mismatch
 
-### [Next steps](https://github.com/MonriPayments/monri-ios/wiki/Tokens-API-Integration#next-steps)
+### Next steps
 
 Congrats! You now have a custom payment form to accept card payments with Monri. Once you’ve sent your form to your
 server, you’ll be able to use the token to perform a charge or to save to a customer.
 
-### [Authorize example](https://github.com/MonriPayments/monri-ios/wiki/Tokens-API-Integration#authorize-example) <a href="#user-content-authorize-example" id="user-content-authorize-example"></a>
+### Authorize example <a href="#user-content-authorize-example" id="user-content-authorize-example"></a>
 
 Example of action handling form submit:
 
@@ -575,7 +576,7 @@ function transactionExample() {
 }
 ```
 
-### [Purchase example](https://github.com/MonriPayments/monri-ios/wiki/Tokens-API-Integration#purchase-example) <a href="#user-content-purchase-example" id="user-content-purchase-example"></a>
+### Purchase example <a href="#user-content-purchase-example" id="user-content-purchase-example"></a>
 
 ```php
 function transactionExample() {

@@ -29,11 +29,11 @@ It reduces integration time significantly simply by requiring implementation of 
 
 Continue following this wiki to learn how to create payment on the backend.
 
-### [Creating new payment on merchant's backend](https://github.com/MonriPayments/monri-ios/wiki/Payment-API-Integration#creating-new-payment-on-merchants-backend) <a href="#user-content-creating-new-payment-on-merchants-backend" id="user-content-creating-new-payment-on-merchants-backend"></a>
+### Creating new payment on merchant's backend <a href="#user-content-creating-new-payment-on-merchants-backend" id="user-content-creating-new-payment-on-merchants-backend"></a>
 
 This step is preferably executed when you have enough information to create customer's order.
 
-For simplicity we'll show example using [curl](https://curl.haxx.se/) in PHP.
+For simplicity, we'll show example using [curl](https://curl.haxx.se/) in PHP.
 
 To create payment on our backend you'll need:
 
@@ -135,7 +135,7 @@ if (curl_errno($ch)) {
 var_dump($response);
 ```
 
-### [Confirm payment on merchant's application](https://github.com/MonriPayments/monri-ios/wiki/Payment-API-Integration#confirm-payment-on-merchants-application) <a href="#user-content-confirm-payment-on-merchants-application" id="user-content-confirm-payment-on-merchants-application"></a>
+### Confirm payment on merchant's application <a href="#user-content-confirm-payment-on-merchants-application" id="user-content-confirm-payment-on-merchants-application"></a>
 
 After you've created payment on a backend and sent client\_secret back to your application you need to confirm payment
 using Monri's iOS SDK.
@@ -173,7 +173,7 @@ TransactionParams is used to override values set in `payment/new`.
 Integration example is available in SDK's example and
 on [this link](https://github.com/MonriPayments/monri-ios/blob/master/Example/Monri/ViewController.swift#L70)
 
-### [Getting payment result on merchant's backend](https://github.com/MonriPayments/monri-ios/wiki/Payment-API-Integration#getting-payment-result-on-merchants-backend) <a href="#user-content-getting-payment-result-on-merchants-backend" id="user-content-getting-payment-result-on-merchants-backend"></a>
+### Getting payment result on merchant's backend <a href="#user-content-getting-payment-result-on-merchants-backend" id="user-content-getting-payment-result-on-merchants-backend"></a>
 
 Although you can easily collect payment result directly in application through callback it's better to implement
 callback listener (WebHook) on your backend.

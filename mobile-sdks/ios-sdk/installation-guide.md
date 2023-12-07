@@ -11,7 +11,7 @@ customizable, UI elements to use out-of-the-box to collect your users' payment d
 We also expose the low-level APIs that power those elements to make it easy to build fully custom forms. This guide will
 take you all the way from integrating our SDK to accepting payments from your users via credit cards.
 
-### [Install and configure the SDK](https://github.com/MonriPayments/monri-ios/wiki/Installation-Guide#install-and-configure-the-sdk) <a href="#user-content-install-and-configure-the-sdk" id="user-content-install-and-configure-the-sdk"></a>
+### [Install and configure the SDK](installation-guide.md) <a href="#user-content-install-and-configure-the-sdk" id="user-content-install-and-configure-the-sdk"></a>
 
 You can choose to install the Monri iOS SDK via CocoaPods.
 
@@ -39,21 +39,20 @@ pod install
 pod update Monri
 ```
 
-## [Collecting credit card information](https://github.com/MonriPayments/monri-ios/wiki/Installation-Guide#collecting-credit-card-information) <a href="#user-content-collecting-credit-card-information" id="user-content-collecting-credit-card-information"></a>
+## Collecting credit card information <a href="#user-content-collecting-credit-card-information" id="user-content-collecting-credit-card-information"></a>
 
 At some point in the flow of your app, you’ll want to obtain payment details from the user. There are a couple ways to
 do this:
 
-* [Use our built-in card input to collect card information](https://monri.com/docs/mobile/ios#card-input)
-* [Build your own credit card form](https://monri.com/docs/mobile/ios#credit-card-form)
+* Use our built-in card input to collect card information
+* Build your own credit card form
 
 Instructions for each route follows, although you may want to write your app to offer support for both.
 
-### [Using the card input](https://github.com/MonriPayments/monri-ios/wiki/Installation-Guide#using-the-card-input) <a href="#user-content-using-the-card-input" id="user-content-using-the-card-input"></a>
+### Using the card input <a href="#user-content-using-the-card-input" id="user-content-using-the-card-input"></a>
 
 To collect card data from your customers directly, you can use
-Monri’s [CardInlineView](https://github.com/jasminsuljic/monri-ios/blob/master/Monri/Classes/CardInlineView.swift). You
-can include it in any view:
+Monri’s `CardInlineView`. You can include it in any view:
 
 * Add a UITextField to your view in interface builder and change its class to `CardInlineView` (when using interface
   builder)
@@ -86,7 +85,7 @@ if !card.validateCard() {
 }
 ```
 
-## [Building your own form](https://github.com/MonriPayments/monri-ios/wiki/Installation-Guide#building-your-own-form) <a href="#user-content-building-your-own-form" id="user-content-building-your-own-form"></a>
+## Building your own form <a href="#user-content-building-your-own-form" id="user-content-building-your-own-form"></a>
 
 If you build your own payment form, you’ll need to collect at least your customers’ card numbers and expiration dates.
 Monri strongly recommends collecting the CVC. You can optionally collect the user’s name and billing address for
@@ -96,7 +95,7 @@ Once you’ve collected a customer’s information, you will need to exchange th
 
 <figure><img src="../../.gitbook/assets/monri-ios-input.png" alt=""><figcaption></figcaption></figure>
 
-## [Creating & validating cards from a custom form](https://github.com/MonriPayments/monri-ios/wiki/Installation-Guide#creating--validating-cards-from-a-custom-form) <a href="#user-content-creating--validating-cards-from-a-custom-form" id="user-content-creating--validating-cards-from-a-custom-form"></a>
+## Creating & validating cards from a custom form <a href="#user-content-creating--validating-cards-from-a-custom-form" id="user-content-creating--validating-cards-from-a-custom-form"></a>
 
 To create a Card object from data you’ve collected from other forms, you can create the object with its initializer.
 
@@ -121,12 +120,12 @@ if (!card.validateCard()) {
 }
 ```
 
-## [APIs](https://github.com/MonriPayments/monri-ios/wiki/Installation-Guide#apis) <a href="#user-content-apis" id="user-content-apis"></a>
+## APIs <a href="#user-content-apis" id="user-content-apis"></a>
 
 iOS SDK supports:
 
-* [Payment API](https://github.com/MonriPayments/monri-ios/wiki/Payment-API-Integration)
-* [Tokens API](https://github.com/MonriPayments/monri-ios/wiki/Tokens-API-Integration)
+* [Payment API](payment-api-integration.md)
+* [Tokens API](tokens-api-integration.md)
 
 Payment API is used to confirm payment directly in the app. This usually means that order's details are known at the
 moment of collecting card's data.
